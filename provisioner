@@ -1,0 +1,10 @@
+#moving provider file from local to remote
+provisioner "file" {
+   source = "provider.tf"
+   destination = "/tmp/readme.md"
+   connection {
+     type = "ssh"
+     user = "linux"
+     private_key = file("${path.module}/id_rsa.pem")
+     host = "${self.public_ip}"
+   }
